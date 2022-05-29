@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Welcome Page";
+}
+
+<div>
+    <h1>Hello world</h1>
+
+    "@Url.Content("~/OrderList/FindUsersOrderList")"
+</div>
+@Scripts.Render("~/Scripts/Custmize/ajaxFunctions.js");
+<script>
+    $.when(ajaxFindUsersOrderList(1)).done(function (response) {
+        console.log(response);
+    });
+</script>

@@ -44,7 +44,7 @@
         <h2>訂單查詢</h2>
         <div>
             <h3>入住日</h3>
-            <input id="checkindate" type="date" />
+            <input id="checkindate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
             <input id="findRoom" type="button" value="查詢" />
         </div>
         <table id="testtable">

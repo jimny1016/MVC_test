@@ -37,24 +37,26 @@ function clickFunctionsSetting() {
                     return;
                 }
                 $("#member-id").data("memberid", response.Result[0].Id);
-                $("#member-name").data("membername", response.Result[0].Name); 
+                $("#member-name").data("membername", response.Result[0].Name);
                 alert('註冊成功!');
                 showWelcomeBlock();
                 return;
             });
         }
-
-        $.when(ajaxLogin($('#login-register-account').val(), $('#login-register-password').val())).done(function (response) {
-            if (!response.Success) {
-                alert('登入失敗:' + response.Document);
+        else {
+            $.when(ajaxLogin($('#login-register-account').val(), $('#login-register-password').val())).done(function (response) {
+                if (!response.Success) {
+                    alert('登入失敗:' + response.Document);
+                    return;
+                }
+                $("#member-id").data("memberid", response.Result[0].Id);
+                $("#member-name").data("membername", response.Result[0].Name);
+                alert('登入成功!');
+                showWelcomeBlock();
                 return;
-            }
-            $("#member-id").data("memberid", response.Result[0].Id);
-            $("#member-name").data("membername", response.Result[0].Name);
-            alert('登入成功!');
-            showWelcomeBlock();
-            return;
-        });
+            });
+        }
+
     });
     $("#findRoom").click(function () {
         $.when(ajaxFindRoom($("#checkindate").val())).done(function (response) {
@@ -130,7 +132,7 @@ function clickFunctionsSetting() {
                 //});
                 //cellbtn.appendChild(createOrderListBtn);
             });
-            $("#findRoomResult").append(tbl_body);   //DOM table doesn't have .appendChild
+            $("#my-orderlist").append(tbl_body);   //DOM table doesn't have .appendChild
         });
     });
 }

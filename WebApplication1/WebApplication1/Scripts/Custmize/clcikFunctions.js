@@ -32,15 +32,27 @@ function clickFunctionsSetting() {
 
         if (isRegister) {
             $.when(ajaxRegister($('#login-register-account').val(), $('#login-register-password').val(), $('#login-register-name').val())).done(function (response) {
-                console.log(response);
                 if (!response.Success) {
                     alert('註冊失敗:' + response.Document);
                     return;
                 }
-                $("#member-id").data("memberid", response.Response[0].Id); 
+                $("#member-id").data("memberid", response.Result[0].Id); 
                 alert('註冊成功!');
+                showWelcomeBlock();
+                return;
             });
-            
         }
+
+        $.when(ajaxLogin($('#login-register-account').val(), $('#login-register-password').val())).done(function (response) {
+            console.log(response);
+            if (!response.Success) {
+                alert('登入失敗:' + response.Document);
+                return;
+            }
+            $("#member-id").data("memberid", response.Result[0].Id);
+            showWelcomeBlock();
+            alert('登入成功!');
+            return;
+        });
     });    
 }

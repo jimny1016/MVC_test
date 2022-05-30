@@ -3,13 +3,43 @@
 }
 
 <div>
-    <h1>Hello world</h1>
-
-    "@Url.Content("~/OrderList/FindUsersOrderList")"
+    <div id="welcome-block" style="text-align:center;">
+        <h1>Welcome</h1>
+        <button class="go-to-login-page">登入</button>
+        <button class="go-to-search-page">查房</button>
+    </div>
+    <div id="login-register-block" style="text-align:center;">
+        <h2 id="login-register-title">登入</h2>
+        <div>
+            <h3>帳號</h3>
+            <input id="login-register-account" type="text" />
+        </div>
+        <div>
+            <h3>密碼</h3>
+            <input id="login-register-password" type="password" />
+        </div>
+        <div id="login-register-name-block">
+            <h3>姓名</h3>
+            <input id="login-register-name" type="text" />
+        </div>
+        <div style="margin-top:5px;">
+            <button id="login-register-submit-button">確定</button>
+        </div>
+        <div style="margin-top:5px;">
+            <button id="login-register-register-button">註冊</button>
+            <button id="login-register-login-button">登入</button>
+        </div>
+    </div>
 </div>
-@Scripts.Render("~/Scripts/Custmize/ajaxFunctions.js");
+<input id="member-id" data-memberid="" type="button" style="visibility:hidden;" />
+@Scripts.Render("~/Scripts/Custmize/pageItemSetting.js")
+@Scripts.Render("~/Scripts/Custmize/clcikFunctions.js")
+@Scripts.Render("~/Scripts/Custmize/ajaxFunctions.js")
+@Scripts.Render("~/Scripts/Custmize/main.js")
 <script>
     $.when(ajaxFindUsersOrderList(1)).done(function (response) {
         console.log(response);
     });
+    initialization();
 </script>
+.

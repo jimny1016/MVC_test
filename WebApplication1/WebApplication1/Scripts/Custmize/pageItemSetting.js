@@ -37,5 +37,8 @@ function showRoomsBlock() {
     $("#rooms-block").show();
 }
 function cleanRoomsTable() {
-    $("#testtable").html('');
+    $("#findRoomResult").html('');
+}
+function cleanMyAccountOrderListTable() {
+    $("#my-orderlist").html('');
 }

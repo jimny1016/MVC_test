@@ -36,7 +36,8 @@ function clickFunctionsSetting() {
                     alert('註冊失敗:' + response.Document);
                     return;
                 }
-                $("#member-id").data("memberid", response.Result[0].Id); 
+                $("#member-id").data("memberid", response.Result[0].Id);
+                $("#member-name").data("membername", response.Result[0].Name); 
                 alert('註冊成功!');
                 showWelcomeBlock();
                 return;
@@ -49,8 +50,9 @@ function clickFunctionsSetting() {
                 return;
             }
             $("#member-id").data("memberid", response.Result[0].Id);
-            showWelcomeBlock();
+            $("#member-name").data("membername", response.Result[0].Name);
             alert('登入成功!');
+            showWelcomeBlock();
             return;
         });
     });
@@ -87,13 +89,50 @@ function clickFunctionsSetting() {
                 });
                 cellbtn.appendChild(createOrderListBtn);
             });
-            $("#testtable").append(tbl_body);   //DOM table doesn't have .appendChild
+            $("#findRoomResult").append(tbl_body);   //DOM table doesn't have .appendChild
         });
     });
     $(".go-to-search-page").click(function () {
         showRoomsBlock();
     });
-    
+
+    $("#go-to-my-account").click(function () {
+        $.when(ajaxFindUsersOrderList($("#member-id").data("memberid"))).done(function (response) {
+            cleanMyAccountOrderListTable();
+            var tbl_body = document.createElement("tbody");
+            $.each(response.Result, function () {
+                var tbl_row = tbl_body.insertRow();
+
+                var cell = tbl_row.insertCell();
+                cell.appendChild(document.createTextNode(this.Room.Title.toString()));
+
+                cell = tbl_row.insertCell();
+                var newImg = document.createElement("img");
+                newImg.src = this.Room.ImageURL.toString();
+                newImg.width = 288;
+                newImg.height = 192;
+                cell.appendChild(newImg);
+
+                cell = tbl_row.insertCell();
+                cell.appendChild(document.createTextNode(this.OrderList.CheckingDate.toString()));
+
+                cell = tbl_row.insertCell();
+                cell.appendChild(document.createTextNode(this.Room.Price.toString()));
+
+                //var cellbtn = tbl_row.insertCell();
+                //var createOrderListBtn = document.createElement("input");
+                //createOrderListBtn.type = "button";
+                //createOrderListBtn.value = "訂房";
+                //var targetRoomId = this.Id;
+                //var targetPrice = this.Price;
+                //createOrderListBtn.addEventListener("click", function () {
+                //    CreateOrderList(targetRoomId, $("#checkindate").val(), targetPrice);
+                //});
+                //cellbtn.appendChild(createOrderListBtn);
+            });
+            $("#findRoomResult").append(tbl_body);   //DOM table doesn't have .appendChild
+        });
+    });
 }
 function CreateOrderList(roomId, checkingDate, price) {
 

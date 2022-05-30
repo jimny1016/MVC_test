@@ -6,6 +6,7 @@
         border: black solid 1px;
         padding: 5px;
     }
+
     table {
         display: flex;
         justify-content: center;
@@ -44,15 +45,21 @@
         <h2>訂單查詢</h2>
         <div>
             <h3>入住日</h3>
-            <input id="checkindate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+            <input id="checkindate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             <input id="findRoom" type="button" value="查詢" />
         </div>
-        <table id="testtable">
-
+        <table id="findRoomResult">
+        </table>
+    </div>
+    <div id="my-account-block" style="text-align:center;">
+        <h2 id="my-account-name-h2">Hi</h2>
+        <h2>我的訂單</h2>
+        <table id="my-orderlist">
         </table>
     </div>
 </div>
 <input id="member-id" data-memberid="" type="button" style="visibility:hidden;" />
+<input id="member-name" data-membername="" type="button" style="visibility:hidden;" />
 @Scripts.Render("~/Scripts/Custmize/pageItemSetting.js")
 @Scripts.Render("~/Scripts/Custmize/clcikFunctions.js")
 @Scripts.Render("~/Scripts/Custmize/ajaxFunctions.js")

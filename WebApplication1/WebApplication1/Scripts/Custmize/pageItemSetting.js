@@ -20,6 +20,7 @@ function loginRegisterButtonSetting(isLoginState) {
 function allBlockHide() {
     $("#welcome-block").hide();
     $("#login-register-block").hide();
+    $("#rooms-block").hide();
 }
 function showWelcomeBlock() {
     allBlockHide();
@@ -29,4 +30,12 @@ function showWelcomeBlock() {
 function showLoginRegisterBlock() {
     allBlockHide();
     $("#login-register-block").show();
+}
+function showRoomsBlock() {
+    allBlockHide();
+    cleanRoomsTable();
+    $("#rooms-block").show();
+}
+function cleanRoomsTable() {
+    $("#testtable").html('');
 }

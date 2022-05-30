@@ -1,7 +1,17 @@
 ﻿@{
     ViewBag.Title = "Welcome Page";
 }
-
+<style>
+    td {
+        border: black solid 1px;
+        padding: 5px;
+    }
+    table {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+</style>
 <div>
     <div id="welcome-block" style="text-align:center;">
         <h1>Welcome</h1>
@@ -30,6 +40,17 @@
             <button id="login-register-login-button">登入</button>
         </div>
     </div>
+    <div id="rooms-block" style="text-align:center;">
+        <h2>訂單查詢</h2>
+        <div>
+            <h3>入住日</h3>
+            <input id="checkindate" type="date" />
+            <input id="findRoom" type="button" value="查詢" />
+        </div>
+        <table id="testtable">
+
+        </table>
+    </div>
 </div>
 <input id="member-id" data-memberid="" type="button" style="visibility:hidden;" />
 @Scripts.Render("~/Scripts/Custmize/pageItemSetting.js")
@@ -37,9 +58,5 @@
 @Scripts.Render("~/Scripts/Custmize/ajaxFunctions.js")
 @Scripts.Render("~/Scripts/Custmize/main.js")
 <script>
-    $.when(ajaxFindUsersOrderList(1)).done(function (response) {
-        console.log(response);
-    });
     initialization();
 </script>
-.

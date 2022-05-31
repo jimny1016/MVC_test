@@ -52,7 +52,7 @@ function ajaxEditOrderList(Id, CheckingDate) {
 }
 function ajaxDeleteOrderList(Id) {
     return $.postMvc(
-        "/OrderList/FindUsersOrderList",
+        "/OrderList/DeleteOrderList",
         { Id: Id },
         "json"
     );

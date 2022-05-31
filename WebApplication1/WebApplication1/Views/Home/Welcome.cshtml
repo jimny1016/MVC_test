@@ -51,12 +51,23 @@
         </div>
         <table id="findRoomResult">
         </table>
+        <button class="back-home-button">回首頁</button>
     </div>
     <div id="my-account-block" style="text-align:center;">
         <h2 id="my-account-name-h2">Hi</h2>
         <h2>我的訂單</h2>
         <table id="my-orderlist">
         </table>
+        <button class="back-home-button">回首頁</button>
+    </div>
+    <div id="edit-orderlist-block" style="text-align:center;">
+        <h2>修改訂單</h2>
+        <div>
+            <h3>入住日</h3>
+            <input id="editcheckindate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <input id="editCheckindatebutton" type="button" value="確認" />
+        </div>
+        <input id="taget-order-list-id" data-orderlistid="" type="button" style="visibility:hidden;" />
     </div>
 </div>
 <input id="member-id" data-memberid="" type="button" style="visibility:hidden;" />

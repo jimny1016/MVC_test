@@ -21,6 +21,8 @@ function allBlockHide() {
     $("#welcome-block").hide();
     $("#login-register-block").hide();
     $("#rooms-block").hide();
+    $("#my-account-block").hide();
+    $("#edit-orderlist-block").hide();    
 }
 function showWelcomeBlock() {
     allBlockHide();
@@ -35,6 +37,14 @@ function showRoomsBlock() {
     allBlockHide();
     cleanRoomsTable();
     $("#rooms-block").show();
+}
+function showMyAccountBlock() {
+    allBlockHide();
+    $("#my-account-block").show();
+}
+function showEditOrderListBlock() {
+    allBlockHide();
+    $("#edit-orderlist-block").show();
 }
 function cleanRoomsTable() {
     $("#findRoomResult").html('');

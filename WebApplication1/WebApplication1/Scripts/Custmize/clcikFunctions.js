@@ -99,6 +99,7 @@ function clickFunctionsSetting() {
     });
 
     $("#go-to-my-account").click(function () {
+        $("#my-account-name-h2").text("Hi," + $("#member-name").data("membername"));
         $.when(ajaxFindUsersOrderList($("#member-id").data("memberid"))).done(function (response) {
             cleanMyAccountOrderListTable();
             var tbl_body = document.createElement("tbody");
@@ -115,25 +116,49 @@ function clickFunctionsSetting() {
                 newImg.height = 192;
                 cell.appendChild(newImg);
 
-                cell = tbl_row.insertCell();
-                cell.appendChild(document.createTextNode(this.OrderList.CheckingDate.toString()));
+                cell = tbl_row.insertCell(); 
+                var checkingDate = formatDate(new Date(parseInt(this.OrderList.CheckingDate.toString().substr(6))));
+                cell.appendChild(document.createTextNode(checkingDate));
 
                 cell = tbl_row.insertCell();
                 cell.appendChild(document.createTextNode(this.Room.Price.toString()));
 
-                //var cellbtn = tbl_row.insertCell();
-                //var createOrderListBtn = document.createElement("input");
-                //createOrderListBtn.type = "button";
-                //createOrderListBtn.value = "訂房";
-                //var targetRoomId = this.Id;
-                //var targetPrice = this.Price;
-                //createOrderListBtn.addEventListener("click", function () {
-                //    CreateOrderList(targetRoomId, $("#checkindate").val(), targetPrice);
-                //});
-                //cellbtn.appendChild(createOrderListBtn);
+                var cellbtn = tbl_row.insertCell();
+                var editOrderListBtn = document.createElement("input");
+                editOrderListBtn.type = "button";
+                editOrderListBtn.value = "修改入住日";
+                var targetOrderListId = this.OrderList.Id;
+                editOrderListBtn.addEventListener("click", function () {
+                    GoToEditOrderListPage(targetOrderListId, checkingDate);
+                });
+                cellbtn.appendChild(editOrderListBtn);
+
+                var deleteOrderListBtn = document.createElement("input");
+                deleteOrderListBtn.type = "button";
+                deleteOrderListBtn.value = "刪除訂單";
+                deleteOrderListBtn.addEventListener("click", function () {
+                    DeleteOrderList(targetOrderListId);
+                });
+                cellbtn.appendChild(deleteOrderListBtn);
             });
             $("#my-orderlist").append(tbl_body);   //DOM table doesn't have .appendChild
+            showMyAccountBlock();
         });
+    });
+    $("#editCheckindatebutton").click(function () {
+        $.when(ajaxEditOrderList($("#taget-order-list-id").data("orderlistid"), $("#editcheckindate").val())).done(function (response) {
+            if (!response.Success) {
+                alert('修改失敗:' + response.Document);
+                return;
+            }
+
+            alert('修改成功!');
+            $("#go-to-my-account").trigger("click");
+            return;
+        });
+    });
+    $('.back-home-button').click(function () {
+        showWelcomeBlock();
     });
 }
 function CreateOrderList(roomId, checkingDate, price) {
@@ -152,6 +177,25 @@ function CreateOrderList(roomId, checkingDate, price) {
         }
         showWelcomeBlock();
         alert('建立訂單成功!');
+        return;
+    });
+}
+function GoToEditOrderListPage(orderListId, checkingDate) {
+    $("#taget-order-list-id").data("orderlistid", orderListId);
+    $("#editcheckindate").val(checkingDate);
+    
+    allBlockHide();
+    showEditOrderListBlock();
+}
+function DeleteOrderList(orderListId) {
+    $.when(ajaxDeleteOrderList(orderListId)).done(function (response) {
+        if (!response.Success) {
+            alert('刪除失敗:' + response.Document);
+            return;
+        }
+
+        alert('刪除成功!');
+        $("#go-to-my-account").trigger("click");
         return;
     });
 }

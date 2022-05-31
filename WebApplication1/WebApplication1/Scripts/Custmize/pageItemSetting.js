@@ -1,7 +1,14 @@
 
 function welcomeBlockSetting() {
+    $(".go-to-search-page").hide();
+    $("#go-to-my-account").hide();
+    $(".go-to-login-page").hide();
     if ($("#member-id").data("memberid")) {
-        $(".go-to-login-page").hide();
+        $(".go-to-search-page").show();
+        $("#go-to-my-account").show();
+    }
+    else {
+        $(".go-to-login-page").show();
     }
 }
 function loginRegisterButtonSetting(isLoginState) {

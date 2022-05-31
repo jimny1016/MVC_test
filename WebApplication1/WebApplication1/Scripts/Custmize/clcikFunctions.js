@@ -124,22 +124,27 @@ function clickFunctionsSetting() {
                 cell.appendChild(document.createTextNode(this.Room.Price.toString()));
 
                 var cellbtn = tbl_row.insertCell();
-                var editOrderListBtn = document.createElement("input");
-                editOrderListBtn.type = "button";
-                editOrderListBtn.value = "修改入住日";
-                var targetOrderListId = this.OrderList.Id;
-                editOrderListBtn.addEventListener("click", function () {
-                    GoToEditOrderListPage(targetOrderListId, checkingDate);
-                });
-                cellbtn.appendChild(editOrderListBtn);
+                if (Date.parse(checkingDate) < Date.now()) {
+                    cellbtn.appendChild(document.createTextNode("日期已過，無法刪改。"));
+                }
+                else {
+                    var editOrderListBtn = document.createElement("input");
+                    editOrderListBtn.type = "button";
+                    editOrderListBtn.value = "修改入住日";
+                    var targetOrderListId = this.OrderList.Id;
+                    editOrderListBtn.addEventListener("click", function () {
+                        GoToEditOrderListPage(targetOrderListId, checkingDate);
+                    });
+                    cellbtn.appendChild(editOrderListBtn);
 
-                var deleteOrderListBtn = document.createElement("input");
-                deleteOrderListBtn.type = "button";
-                deleteOrderListBtn.value = "刪除訂單";
-                deleteOrderListBtn.addEventListener("click", function () {
-                    DeleteOrderList(targetOrderListId);
-                });
-                cellbtn.appendChild(deleteOrderListBtn);
+                    var deleteOrderListBtn = document.createElement("input");
+                    deleteOrderListBtn.type = "button";
+                    deleteOrderListBtn.value = "刪除訂單";
+                    deleteOrderListBtn.addEventListener("click", function () {
+                        DeleteOrderList(targetOrderListId);
+                    });
+                    cellbtn.appendChild(deleteOrderListBtn);
+                }
             });
             $("#my-orderlist").append(tbl_body);   //DOM table doesn't have .appendChild
             showMyAccountBlock();

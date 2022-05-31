@@ -39,6 +39,10 @@ namespace WebApplication1.Service
         {
             //尚未寄EMAIL
             var target = db.OrderList.Find(source.Id);
+            if (db.OrderList.Where(x => x.RoomId == target.RoomId && x.CheckingDate == source.CheckingDate).Count() > 0)
+            {
+                return new APIResponse<object>() { Document = "此房間當日已客滿。", Success = false };
+            }
             target.CheckingDate = source.CheckingDate;
             db.SaveChanges();
             return new APIResponse<object>() { Document = "訂單修改成功。", Success = true };

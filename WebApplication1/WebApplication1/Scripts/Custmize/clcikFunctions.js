@@ -178,7 +178,6 @@ function CreateOrderList(roomId, checkingDate, price) {
     }
 
     $.when(ajaxCreatOrderList($("#member-id").data("memberid"), roomId, checkingDate, price)).done(function (response) {
-        console.log(response);
         if (!response.Success) {
             alert('建立訂單失敗:' + response.Document);
             return;

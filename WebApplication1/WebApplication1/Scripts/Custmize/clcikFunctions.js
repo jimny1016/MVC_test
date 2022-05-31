@@ -165,6 +165,9 @@ function clickFunctionsSetting() {
     $('.back-home-button').click(function () {
         showWelcomeBlock();
     });
+    $('#cancleEditCheckindatebutton').click(function () {
+        $("#go-to-my-account").trigger("click");
+    });    
 }
 function CreateOrderList(roomId, checkingDate, price) {
 

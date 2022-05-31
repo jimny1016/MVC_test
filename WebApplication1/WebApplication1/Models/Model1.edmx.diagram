@@ -5,8 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="81e1b7cd871a452d9bf3df6955d8c8d8" Name="Diagram1">
-        <EntityTypeShape EntityType="messageModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="messageModel.Guestbook" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="messageModel.Member" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="messageModel.OrderList" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="messageModel.Room" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

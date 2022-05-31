@@ -25,8 +25,6 @@ namespace WebApplication1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Article> Article { get; set; }
-        public virtual DbSet<Guestbook> Guestbook { get; set; }
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<OrderList> OrderList { get; set; }
         public virtual DbSet<Room> Room { get; set; }
